@@ -1,7 +1,7 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-from mycrawler.items import MycrawlerItem
+from crawler.items import MycrawlerItem
 
 
 class PageavailabilitySpider(CrawlSpider):

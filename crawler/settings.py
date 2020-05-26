@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for mycrawler project
-#
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
 #
@@ -9,10 +7,10 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'mycrawler'
+BOT_NAME = 'spider-works'
 
-SPIDER_MODULES = ['mycrawler.spiders']
-NEWSPIDER_MODULE = 'mycrawler.spiders'
+SPIDER_MODULES = ['crawler.spiders']
+NEWSPIDER_MODULE = 'crawler.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -22,21 +20,23 @@ USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 5
+
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 #CONCURRENT_REQUESTS_PER_IP = 16
 
-# Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+# Enable/Disable cookies (enabled by default)
+COOKIES_ENABLED = False
 
-# Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+
+# Enable/Disable Telnet Console (enabled by default)
+TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
 #DEFAULT_REQUEST_HEADERS = {
@@ -46,26 +46,33 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 1
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'mycrawler.middlewares.MycrawlerSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+    'crawler.spider_middle.SpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'mycrawler.middlewares.MycrawlerDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware': 543,
+    # 'crawler.download_middle.DownloaderMiddleware': 543,
+}
+
+#
+https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.shTTPCACHE_DIR = 'cache.d'
+HTTPCACHE_EXPIRATION_SECS = 0
+HTTPCACHE_GZIP = False
+HTTPCACHE_ENABLED = True
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+EXTENSIONS = {
+    'scrapy.extensions.telnet.TelnetConsole': None,
+}
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'mycrawler.pipelines.MycrawlerPipeline': 300,
+#    'crawler.pipelines.MycrawlerPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -91,5 +98,10 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 1
 
 # Disable retries
 RETRY_ENABLED = False
+
 # Reduce download timeout
 DOWNLOAD_TIMEOUT = 15
+
+# For Broad Crawling
+SCHEDULER_PRIORITY_QUEUE = 'scrapy.pqueues.DownloaderAwarePriorityQueue'
+# LOG_LEVEL = 'INFO'

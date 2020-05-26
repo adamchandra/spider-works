@@ -1,12 +1,44 @@
-# Web Crawler
+# SpiderWorks Crawler
 
-## Install and Run
+`docker-compose up` command will start a `crawler` service 
 
-1. Clone this project to your local environment.
-1. Run `docker-compose up` from the top level directory for your project.
+### Downloader Middleware
+    process_request()
+        - Modify request to check: google/bing cache, wayback machine, etc
+        - Rewrite some URLs to get static html versions
 
-This `docker-compose up` command will start a `crawler` service and run the crawler for the specified website.
+    process_response()
 
-# Common Practices
+### 1. Spider Middleware
+    
+    process_spider_input()
+    process_spider_output()
 
-[Avoiding getting banned for scraping](https://doc.scrapy.org/en/latest/topics/practices.html#avoiding-getting-banned)
+### Item Pipeline
+    process_item()
+        - Write html/pdf to disk, db
+    
+    
+
+
+Item Pipeline
+
+```
+    |                        [Spiders]
+    |                            |
+    |                    (Spider Middleware)(1*)
+    |                            |
+    |     [Item Pipeline](3*) <-- [Engine]  <--> (2*)(Downloader Middleware) <-->  [Downloader]
+    |                            |
+    |                       [Scheduler]
+
+```
+
+
+
+- Figure out I/O story
+- Local fs storage? database only? i/o queue, ala zeromq? 
+
+
+
+
