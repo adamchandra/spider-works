@@ -12,7 +12,6 @@ BOT_NAME = 'spider-works'
 SPIDER_MODULES = ['crawler.spiders']
 NEWSPIDER_MODULE = 'crawler.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
 
@@ -20,20 +19,19 @@ USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 100
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 5
+DOWNLOAD_DELAY = 4
 
 # The download delay setting will honor only one of:
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 3
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Enable/Disable cookies (enabled by default)
-COOKIES_ENABLED = False
-
+COOKIES_ENABLED = True
 
 # Enable/Disable Telnet Console (enabled by default)
 TELNETCONSOLE_ENABLED = False
@@ -57,11 +55,6 @@ DOWNLOADER_MIDDLEWARES = {
     # 'crawler.download_middle.DownloaderMiddleware': 543,
 }
 
-#
-https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.shTTPCACHE_DIR = 'cache.d'
-HTTPCACHE_EXPIRATION_SECS = 0
-HTTPCACHE_GZIP = False
-HTTPCACHE_ENABLED = True
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -90,18 +83,27 @@ EXTENSIONS = {
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
-#HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = 'httpcache'
+HTTPCACHE_DIR = 'cache.d'
+HTTPCACHE_EXPIRATION_SECS = 0
+HTTPCACHE_GZIP = False
+HTTPCACHE_ENABLED = True
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
 
 # Disable retries
 RETRY_ENABLED = False
 
 # Reduce download timeout
-DOWNLOAD_TIMEOUT = 15
+DOWNLOAD_TIMEOUT = 12
 
 # For Broad Crawling
-SCHEDULER_PRIORITY_QUEUE = 'scrapy.pqueues.DownloaderAwarePriorityQueue'
+# SCHEDULER_PRIORITY_QUEUE = 'scrapy.pqueues.DownloaderAwarePriorityQueue'
 # LOG_LEVEL = 'INFO'
+LOG_FILE = 'crawler.log'
+LOG_ENABLED = True
+# LOG_ENCODING
+# LOG_FORMAT
+# LOG_DATEFORMAT
+# LOG_STDOUT
+# LOG_SHORT_NAMES

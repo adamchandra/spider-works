@@ -42,3 +42,10 @@ Item Pipeline
 
 
 
+
+### TODO 
+    Restart/Resume Crawl
+    Track success/failure of URL fetch and html extraction
+    Try different fetch methods based on URL fetch statue (use login, headless browser, google cache, etc.)
+    Fetch js-enabled pages
+    Fetch PDF (links, documents)
